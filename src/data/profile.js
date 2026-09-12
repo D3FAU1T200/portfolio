@@ -146,6 +146,7 @@ export const projects = [
     index: '01',
     title: 'AgriCore',
     kind: 'AgTech Platform',
+    image: '/projects/agricore.webp',
     summary:
       'An intelligent agriculture platform that leverages autonomous drone telemetry to help farmers monitor fields, visualize real-time analytics, and support precision farming through automated crop monitoring.',
     problem:
@@ -164,6 +165,7 @@ export const projects = [
     index: '02',
     title: 'Level Up',
     kind: 'Gamified Learning Platform',
+    image: '/projects/level-up.webp',
     summary:
       'Level Up is a platform that helps students learn topics through interactive lessons and gamified quizzes. The experience is designed to improve engagement, reinforce concepts with instant feedback, and make studying feel rewarding.',
     problem:

@@ -4,9 +4,11 @@ export function Button({
   variant = 'primary',
   className = '',
   download,
+  type,
+  disabled,
 }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200'
+    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60'
   const styles = {
     primary: 'bg-accent text-base hover:bg-accent/90',
     ghost:
@@ -22,5 +24,9 @@ export function Button({
       </a>
     )
   }
-  return <button className={cls}>{children}</button>
+  return (
+    <button type={type} disabled={disabled} className={cls}>
+      {children}
+    </button>
+  )
 }

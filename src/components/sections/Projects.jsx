@@ -63,21 +63,32 @@ function ProjectVisual({ project }) {
   return (
     <div
       aria-hidden="true"
-      className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-surface-2 to-base transition-colors duration-300 group-hover:border-accent/40"
+      className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-surface transition-colors duration-300 group-hover:border-accent/40"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_75%_75%_at_50%_50%,black,transparent)]" />
-      <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-accent/10 blur-3xl transition-transform duration-700 group-hover:scale-125" />
-      <span className="absolute bottom-2 left-5 font-display text-[7rem] leading-none font-bold text-ink/[4%] select-none">
-        {project.index}
-      </span>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full border border-accent/40 transition-transform duration-700 group-hover:rotate-45">
-          <span className="h-2.5 w-2.5 rounded-full bg-accent" />
-        </div>
-      </div>
-      <span className="absolute top-5 left-5 font-mono text-[0.65rem] tracking-[0.3em] text-ink-dim uppercase">
-        Visual placeholder
-      </span>
+      {project.image ? (
+        <img
+          src={project.image}
+          alt=""
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_75%_75%_at_50%_50%,black,transparent)]" />
+          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-accent/10 blur-3xl transition-transform duration-700 group-hover:scale-125" />
+          <span className="absolute bottom-2 left-5 font-display text-[7rem] leading-none font-bold text-ink/[4%] select-none">
+            {project.index}
+          </span>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex h-24 w-24 items-center justify-center rounded-full border border-accent/40 transition-transform duration-700 group-hover:rotate-45">
+              <span className="h-2.5 w-2.5 rounded-full bg-accent" />
+            </div>
+          </div>
+          <span className="absolute top-5 left-5 font-mono text-[0.65rem] tracking-[0.3em] text-ink-dim uppercase">
+            Visual placeholder
+          </span>
+        </>
+      )}
       <span className="absolute top-5 right-5 font-mono text-[0.65rem] tracking-[0.3em] text-ink-dim uppercase">
         {project.kind}
       </span>

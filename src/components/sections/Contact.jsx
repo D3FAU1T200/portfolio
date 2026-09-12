@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { profile } from '../../data/profile'
 import { Button } from '../ui/Button'
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbgjvrlp'
 
 const ease = [0.16, 1, 0.3, 1]
 
@@ -19,6 +22,20 @@ const field =
 
 const label =
   'font-mono text-[0.7rem] tracking-[0.25em] text-ink-dim uppercase'
+
+const statusMessage = {
+  idle: 'I will get back to you in 24 hours.',
+  loading: 'Sending your message…',
+  success: 'Thanks — your message has been sent.',
+  error: 'Something went wrong. Please try again, or email me directly.',
+}
+
+const statusColor = {
+  idle: 'text-ink-dim',
+  loading: 'text-ink-dim',
+  success: 'text-accent',
+  error: 'text-red-400',
+}
 
 function ArrowUpRight() {
   return (
@@ -40,12 +57,41 @@ function ArrowUpRight() {
   )
 }
 
+function Spinner() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className="animate-spin"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        opacity="0.25"
+      />
+      <path
+        d="M21 12a9 9 0 0 0-9-9"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
 function stripProtocol(url) {
   return url.replace(/^https?:\/\//, '')
 }
 
 export function Contact() {
   const reduce = useReducedMotion()
+  const [status, setStatus] = useState('idle')
 
   const linkedin = profile.socials.find((social) => social.label === 'LinkedIn')
   const github = profile.socials.find((social) => social.label === 'GitHub')
@@ -73,6 +119,29 @@ export function Contact() {
       value: profile.location,
     },
   ].filter(Boolean)
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.currentTarget
+    setStatus('loading')
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+
+      if (response.ok) {
+        form.reset()
+        setStatus('success')
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
 
   return (
     <section
@@ -150,7 +219,8 @@ export function Contact() {
 
           <motion.div variants={item}>
             <form
-              onSubmit={(event) => event.preventDefault()}
+              onSubmit={handleSubmit}
+              aria-busy={status === 'loading'}
               className="rounded-2xl border border-line bg-surface p-6 sm:p-8"
             >
               <div className="grid gap-6 sm:grid-cols-2">
@@ -200,12 +270,29 @@ export function Contact() {
               </div>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Button className="w-full sm:w-auto">
-                  Send Message
-                  <ArrowUpRight />
+                <Button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full sm:w-auto"
+                >
+                  {status === 'loading' ? (
+                    <>
+                      Sending...
+                      <Spinner />
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <ArrowUpRight />
+                    </>
+                  )}
                 </Button>
-                <p className="text-xs text-ink-dim">
-                  I will get back to you in 24 hours.
+                <p
+                  role={status === 'error' ? 'alert' : 'status'}
+                  aria-live={status === 'error' ? 'assertive' : 'polite'}
+                  className={`text-xs ${statusColor[status]}`}
+                >
+                  {statusMessage[status]}
                 </p>
               </div>
             </form>
