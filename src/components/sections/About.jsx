@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { profile } from '../../data/profile'
+import { about, profile } from '../../data/profile'
 
 const ease = [0.16, 1, 0.3, 1]
 
@@ -12,22 +12,6 @@ const item = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
 }
-
-const intro =
-  'A full stack developer and UI/UX designer focused on turning complex problems into simple, elegant products.'
-
-const story = [
-  'I started building for the web because I wanted to turn static ideas into things people could actually use.',
-  'Since then I have worked across the stack — designing interfaces, wiring up APIs, and shipping products end to end.',
-  'I care about the details most people never notice: load times, empty states, and the way a button feels.',
-  'When I am not coding, I am usually sketching interfaces, reading about design systems, or tinkering with a side project.',
-]
-
-const stats = [
-  { label: 'Years', value: '05+' },
-  { label: 'Projects', value: '40+' },
-  { label: 'Tech Stack', value: '12+' },
-]
 
 export function About() {
   const reduce = useReducedMotion()
@@ -74,7 +58,7 @@ export function About() {
               variants={item}
               className="text-xl leading-relaxed text-ink sm:text-2xl"
             >
-              {intro}
+              {about.intro}
             </motion.p>
             <motion.div
               variants={item}
@@ -92,7 +76,7 @@ export function About() {
               variants={item}
               className="space-y-4 text-base leading-relaxed text-ink-dim"
             >
-              {story.map((sentence) => (
+              {about.story.map((sentence) => (
                 <p key={sentence}>{sentence}</p>
               ))}
             </motion.div>
@@ -101,7 +85,7 @@ export function About() {
               variants={item}
               className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3"
             >
-              {stats.map((stat) => (
+              {about.stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="bg-surface px-6 py-6 transition-colors duration-200 hover:bg-surface-2"

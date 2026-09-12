@@ -207,9 +207,9 @@ export function Hero() {
         </div>
 
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 pb-10 font-mono text-[0.7rem] tracking-[0.25em] text-ink-dim uppercase sm:px-10">
-          <motion.span variants={item}>Mohammed Taha — 2026</motion.span>
+          <motion.span variants={item}>{profile.name} — 2026</motion.span>
           <motion.span variants={item} className="hidden sm:block">
-            React / Node / TypeScript / Figma
+            C++ / JavaScript / TypeScript / React / Flask
           </motion.span>
         </div>
       </motion.div>

@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { exploring, skillGroups } from '../../data/profile'
 
 const ease = [0.16, 1, 0.3, 1]
 
@@ -16,61 +17,6 @@ const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.08 } },
 }
-
-const categories = [
-  {
-    index: '01',
-    title: 'Languages',
-    span: 'lg:col-span-7',
-    skills: ['JavaScript', 'TypeScript', 'Python', 'SQL', 'Go', 'HTML / CSS'],
-  },
-  {
-    index: '02',
-    title: 'Frontend',
-    span: 'lg:col-span-5',
-    skills: [
-      'React',
-      'Next.js',
-      'Tailwind CSS',
-      'Framer Motion',
-      'Redux',
-      'Vite',
-    ],
-  },
-  {
-    index: '03',
-    title: 'Backend',
-    span: 'lg:col-span-5',
-    skills: [
-      'Node.js',
-      'Express',
-      'FastAPI',
-      'PostgreSQL',
-      'MongoDB',
-      'Redis',
-      'REST / GraphQL',
-    ],
-  },
-  {
-    index: '04',
-    title: 'Design & Tools',
-    span: 'lg:col-span-7',
-    skills: [
-      'Figma',
-      'Git & GitHub',
-      'Docker',
-      'Jest',
-      'Storybook',
-      'Postman',
-    ],
-  },
-]
-
-const exploring = [
-  { name: 'Rust', note: 'Systems programming' },
-  { name: 'Three.js', note: '3D on the web' },
-  { name: 'LLM Tooling', note: 'Applied AI' },
-]
 
 export function Skills() {
   const reduce = useReducedMotion()
@@ -118,7 +64,7 @@ export function Skills() {
           viewport={{ once: true, margin: '-100px' }}
           className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-12"
         >
-          {categories.map((category) => (
+          {skillGroups.map((category) => (
             <motion.li
               key={category.title}
               variants={item}

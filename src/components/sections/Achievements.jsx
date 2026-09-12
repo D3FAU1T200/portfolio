@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { achievementCards, milestones } from '../../data/profile'
 import { Tag } from '../ui/Tag'
 
 const ease = [0.16, 1, 0.3, 1]
@@ -17,51 +18,6 @@ const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
 }
-
-const cards = [
-  {
-    index: '(01)',
-    title: 'Competitive Programming',
-    metric: '500+',
-    description:
-      'Problems solved across Codeforces, LeetCode, and CodeChef, with a peak contest rating in the top tier.',
-    tags: ['Codeforces', 'LeetCode', 'CodeChef'],
-  },
-  {
-    index: '(02)',
-    title: 'DSA / Problem Solving',
-    metric: 'Top 5%',
-    description:
-      'A strong foundation in data structures and algorithms — dynamic programming, graphs, and complexity analysis.',
-    tags: ['Algorithms', 'Data Structures', 'System Design'],
-  },
-  {
-    index: '(03)',
-    title: 'Hackathons & Certifications',
-    metric: '6 Wins',
-    description:
-      'Winner and finalist across national hackathons, backed by certifications in cloud and frontend engineering.',
-    tags: ['Hackathons', 'Cloud', 'Frontend'],
-  },
-]
-
-const milestones = [
-  {
-    year: '2022',
-    title: 'First Contest',
-    text: 'Placeholder milestone — started competitive programming and solved the first 100 problems.',
-  },
-  {
-    year: '2024',
-    title: 'National Finalist',
-    text: 'Placeholder milestone — reached the finals of a national-level hackathon.',
-  },
-  {
-    year: '2026',
-    title: 'Certified & Shipping',
-    text: 'Placeholder milestone — earned cloud certifications and shipped production work.',
-  },
-]
 
 function ArrowUpRight() {
   return (
@@ -125,7 +81,7 @@ export function Achievements() {
           variants={reduce ? undefined : stagger}
           className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {cards.map((card) => (
+          {achievementCards.map((card) => (
             <motion.li key={card.title} variants={item} className="h-full">
               <article className="group relative h-full overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-surface-2 sm:p-8">
                 <span

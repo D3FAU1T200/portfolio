@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { projects } from '../../data/profile'
 import { Button } from '../ui/Button'
 import { Tag } from '../ui/Tag'
 
@@ -23,43 +24,6 @@ const fromRight = {
   hidden: { opacity: 0, x: 32 },
   show: { opacity: 1, x: 0, transition: { duration: 0.8, ease } },
 }
-
-const projects = [
-  {
-    index: '01',
-    title: 'Atlas',
-    kind: 'Analytics Dashboard',
-    summary:
-      'A real-time analytics dashboard that turns raw product events into decisions teams can act on.',
-    problem:
-      'Product teams were stitching together spreadsheets and exports to answer basic questions about usage. Atlas centralizes ingestion, querying, and visualization in one fast interface.',
-    tech: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind'],
-    outcomes: [
-      'Cut reporting time from hours to seconds',
-      'Ingests 2M+ events per day',
-      'Adopted by 12 internal teams',
-    ],
-    github: '#',
-    demo: '#',
-  },
-  {
-    index: '02',
-    title: 'Meridian',
-    kind: 'Commerce Platform',
-    summary:
-      'A headless commerce storefront engineered for sub-second loads and effortless merchandising.',
-    problem:
-      'The legacy storefront buckled under traffic spikes and gave editors no control over layout. Meridian decouples content from commerce so both can move independently.',
-    tech: ['Next.js', 'GraphQL', 'Stripe', 'Sanity', 'Vercel'],
-    outcomes: [
-      '99 Lighthouse performance score',
-      '38% lift in conversion rate',
-      'Shipped end to end in 6 weeks',
-    ],
-    github: '#',
-    demo: '#',
-  },
-]
 
 function ArrowUpRight() {
   return (
@@ -146,7 +110,7 @@ function ProjectContent({ project }) {
       <div className="mt-8 grid gap-8 sm:grid-cols-2">
         <div>
           <h4 className="font-mono text-[0.7rem] tracking-[0.25em] text-ink-dim uppercase">
-            Problem
+            The Problem
           </h4>
           <p className="mt-3 text-sm leading-relaxed text-ink-dim">
             {project.problem}
@@ -154,23 +118,32 @@ function ProjectContent({ project }) {
         </div>
         <div>
           <h4 className="font-mono text-[0.7rem] tracking-[0.25em] text-ink-dim uppercase">
-            Key outcomes
+            The Solution
           </h4>
-          <ul className="mt-3 space-y-2.5">
-            {project.outcomes.map((outcome) => (
-              <li
-                key={outcome}
-                className="flex items-start gap-3 text-sm leading-relaxed text-ink-dim"
-              >
-                <span
-                  aria-hidden="true"
-                  className="mt-2 h-1 w-1 shrink-0 bg-accent"
-                />
-                {outcome}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-3 text-sm leading-relaxed text-ink-dim">
+            {project.solution}
+          </p>
         </div>
+      </div>
+
+      <div className="mt-8">
+        <h4 className="font-mono text-[0.7rem] tracking-[0.25em] text-ink-dim uppercase">
+          The Impact
+        </h4>
+        <ul className="mt-3 space-y-2.5">
+          {project.impact.map((entry) => (
+            <li
+              key={entry}
+              className="flex items-start gap-3 text-sm leading-relaxed text-ink-dim"
+            >
+              <span
+                aria-hidden="true"
+                className="mt-2 h-1 w-1 shrink-0 bg-accent"
+              />
+              {entry}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mt-8">
