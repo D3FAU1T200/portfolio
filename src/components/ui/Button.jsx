@@ -1,4 +1,10 @@
-export function Button({ children, href, variant = 'primary', className = '' }) {
+export function Button({
+  children,
+  href,
+  variant = 'primary',
+  className = '',
+  download,
+}) {
   const base =
     'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-200'
   const styles = {
@@ -11,7 +17,7 @@ export function Button({ children, href, variant = 'primary', className = '' }) 
 
   if (href) {
     return (
-      <a href={href} className={cls}>
+      <a href={href} download={download} className={cls}>
         {children}
       </a>
     )

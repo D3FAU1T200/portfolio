@@ -1,8 +1,9 @@
 export const profile = {
-  name: 'Your Name',
-  firstName: 'Your',
-  role: 'Senior Frontend Engineer',
+  name: 'Mohammed Taha',
+  firstName: 'Mohammed',
+  role: 'Full Stack Developer & UI/UX Designer',
   tagline: 'I build fast, elegant interfaces for the web.',
+  resumeUrl: '/resume.pdf',
   summary:
     'Recruiter-focused one-liner about what you do, who you are, and the value you bring. This slot will be filled from your resume.',
   location: 'City, Country',
